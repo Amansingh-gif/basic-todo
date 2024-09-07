@@ -1,0 +1,58 @@
+<html>
+
+<body>
+    <input type="text" id="first" placeholder="title">
+    <br>
+    <br>
+    <input type="text" placeholder="description" id="second">
+    <br>
+    <br>
+    <button onclick="todoworks()" >Add todo</button>
+
+    <div id="content"></div>
+
+
+<script>
+
+     function markasdone(id){
+        const parent=document.getElementById(id);
+        parent.children[2].innerHTML="DONE";
+     }
+
+
+
+
+        let Globalid=1;
+        function createChild(title,descp,id){
+        const grandparent=document.createElement("div");
+        const grandchild=document.createElement("div");
+        grandchild.innerHTML=title;
+        const secondgrandchild=document.createElement("div");
+        secondgrandchild.innerHTML=descp;
+        const buttonchild=document.createElement("button");
+        buttonchild.innerHTML="Mark as done";
+        buttonchild.setAttribute("onclick",`markasdone(${id})`)
+
+
+        grandparent.appendChild(grandchild);
+        grandparent.appendChild(secondgrandchild);
+        grandparent.appendChild(buttonchild);
+        grandparent.setAttribute("id",id);
+
+        return grandparent;
+        }
+
+     function todoworks() {
+        const title= document.getElementById("first").value;
+        const descp=document.getElementById("second").value;
+        const parentdiv=document.getElementById("content");
+        
+       parentdiv.appendChild(createChild(title,descp,Globalid++));
+
+
+     }
+
+</script>
+
+</body>
+</html>
